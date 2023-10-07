@@ -1,0 +1,272 @@
+.task {
+    display: flex;
+    max-height: fit-content;
+    margin-top: 3rem;
+}
+
+.task-board {
+    background-color: #ffffff;
+    width: 28%;
+    min-height: 200px;
+    border-radius: 5px;
+    padding: 1rem;
+    margin: 0 1rem;
+    font-family: Poppins;
+    color: #5a5959;
+    font-size: 0.8rem;
+    line-height: 1rem;
+    letter-spacing: 1px;
+}
+
+.todo-task {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.icon:hover {
+    cursor: pointer;
+    box-shadow: 0 1px 10px #bcbcbc;
+    border-radius: 50%;
+    transition: 0.2s ease-in-out;
+}
+
+.task-modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100dvw;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(3, 2, 1, .8);
+    z-index: 1;
+}
+
+.task-card {
+    width: 40%;
+    background-color: #fff;
+    top: 50%;
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.task-card>div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #484848;
+}
+
+h3 {
+    font-size: 1.5rem;
+    color: #262525;
+    font-family: Poppins;
+}
+
+.task-card>form {
+    display: flex;
+    flex-direction: column;
+}
+
+form>input {
+    width: 100%;
+    height: 2.5rem;
+    padding: 10px;
+    font-family: Abel;
+    font-size: 14px;
+    line-height: 18px;
+    border-radius: 5px;
+    border: 1px solid rgb(70, 70, 70);
+}
+
+form>textarea {
+    width: 100% !important;
+    height: 3.5rem !important;
+    padding: 10px;
+    font-family: Abel;
+    font-size: 14px;
+    line-height: 18px;
+    border-radius: 5px;
+    border: 1px solid rgb(70, 70, 70);
+}
+
+.form-btn {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.create-btn {
+    background-color: rgb(54, 121, 5);
+    color: #fff;
+    padding: 0.5rem 0.8rem;
+    border: none;
+    border-radius: 10px;
+    font-family: Roboto;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.reset-btn {
+    background-color: rgb(231, 98, 3);
+    color: #fff;
+    padding: 0.5rem 0.8rem;
+    border: none;
+    border-radius: 10px;
+    font-family: Roboto;
+    font-weight: 500;
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+.create-btn:hover {
+    background-color: rgb(34, 78, 4);
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    box-shadow: 0 1px 10px #bcbcbc;
+}
+
+.reset-btn:hover {
+    background-color: rgb(180, 77, 4);
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    box-shadow: 0 1px 10px #bcbcbc;
+}
+
+.task-item {
+    background-color: #1f1f1f;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    border-radius: 5px;
+    color: #fff;
+    font-family: Poppins;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+label {
+    font-family: Poppins;
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+.error {
+    font-family: Roboto;
+    font-size: 12px;
+    color: red;
+    margin-top: 0;
+}
+
+.title-icon {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task-selected-modal {
+    background-color: #fff;
+    width: 50%;
+    height: fit-content;
+    border-radius: 5px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.task-icon-cancel {
+    align-self: flex-end;
+}
+
+.modal-task-title {
+    font-size: 1.7rem;
+    font-weight: 700;
+    font-family: "Roboto";
+    margin-bottom: 0.8rem;
+    color: #353535;
+}
+
+.modal-task-desc {
+    font-size: 0.9rem;
+    font-weight: 500;
+    font-family: "Roboto";
+    color: #6a6a6a;
+}
+
+.modal-task-title:hover {
+    background-color: #efefef;
+    cursor: pointer;
+}
+
+.modal-task-desc:hover {
+    background-color: #efefef;
+    cursor: pointer;
+}
+
+.modal-state {
+    font-family: "Roboto";
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.8rem;
+    color: #3e3e3e;
+    margin: 0 !important;
+}
+
+select {
+    padding: 0.3rem 0.4rem;
+    font-size: 0.8;
+    font-weight: 600;
+    border: none;
+}
+
+select>option {
+    font-family: "Poppins";
+    transition: select 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.description-box {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0;
+}
+
+.save-task-btn {
+    align-self: flex-end;
+    background-color: #0073ba;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 500;
+    font-family: "Roboto";
+    padding: 0.5rem 0.5rem;
+    border: none;
+    border-radius: 5px;
+}
+
+.save-task-btn:hover {
+    background-color: #02578c;
+    cursor: pointer;
+    box-shadow: 0 1px 10 #343434;
+}
+
+.date {
+    font-family: "Pixelify Sans";
+    font-size: 0.9rem;
+}
+
+.title-icon-task {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "Poppins";
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #6a6a6a;
+}
+
+.task-done {
+    text-decoration: line-through;
+}
