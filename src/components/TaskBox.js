@@ -118,8 +118,10 @@ const TaskBox = () => {
         setSelectedTask({
             id: task.id,
             title: task.title,
+            category: task.category,
             description: task.description,
-            createdDate: task.createdDate
+            createdDate: task.createdDate,
+            updatedDate: date.toISOString()
         })
     }
     function handleStateChange(e) {
@@ -240,8 +242,13 @@ const TaskBox = () => {
                             <label for="description" className="modal-state">Description </label>
                             <p className="modal-task-desc" contentEditable="true" onBlur={(e) => handleTaskDescriptionChange(e)}>{selectedTask.description}</p>
                         </div>
-                        <span className="date">Created on : {selectedTask.createdDate.substr(0, 10)}</span>
-                        <button className="save-task-btn" onClick={handleSaveAndCloseTask}>Save & Close</button>
+                        <div className="task-date-btn">
+                            <div className="task-date">
+                                <span className="date">Created on : {selectedTask.createdDate.substr(0, 10)}</span>
+                                {selectedTask.category === "done" && <span className="date closed-date">Closed on : {selectedTask.updatedDate.substr(0, 10)}</span>}
+                            </div>
+                            <button className="save-task-btn" onClick={handleSaveAndCloseTask}>Save & Close</button>
+                        </div>
                         {/* <p>{selectedTask.description}</p> */}
                     </div>
                 </section>

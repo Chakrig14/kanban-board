@@ -253,8 +253,10 @@ select>option {
 }
 
 .date {
-    font-family: "Pixelify Sans";
+    font-family: "Gabarito";
     font-size: 0.9rem;
+    font-weight: 600;
+    color: #686868;
 }
 
 .title-icon-task {
@@ -269,4 +271,19 @@ select>option {
 
 .task-done {
     text-decoration: line-through;
+}
+
+.closed-date {
+    color: rgb(248, 97, 97);
+}
+
+.task-date-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task-date {
+    display: flex;
+    flex-direction: column;
 }

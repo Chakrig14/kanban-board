@@ -38,3 +38,50 @@ h1 {
 .search-task>input:focus {
     border: 1px solid #424141;
 }
+
+.search-result-container {
+    width: 30%;
+    background-color: #fff;
+    top: 5.2rem;
+    right: 35%;
+    border-radius: 5px;
+    padding: 10px;
+    position: absolute;
+}
+
+.clear-search {
+    position: absolute;
+    right: 34rem;
+    top: 3.4rem;
+}
+
+.search-result {
+    font-size: 0.8rem;
+    font-family: "Poppins";
+    font-weight: 500;
+    line-height: 1.4rem;
+    color: #424141;
+}
+
+.search-result>p {
+    padding: 0.5rem 0;
+}
+
+.task-result {
+    font-family: "Poppins";
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+    color: #565555;
+}
+
+.search-info {
+    font-family: "Poppins";
+    text-align: center;
+    font-size: 0.8rem;
+    line-height: 1.5rem;
+    color: #565555;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
