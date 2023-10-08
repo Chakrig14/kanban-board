@@ -2,11 +2,15 @@ import "../css/home.css";
 import TaskBox from "./TaskBox";
 import { useState } from "react";
 import { CancelOutlined, InfoOutlined } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 const Home = () => {
     const taskFromLocalStorage = JSON.parse(localStorage.getItem("tasks"));
     const [filter, setFilter] = useState([]);
     const [taskClear, setTaskClear] = useState("");
+    // const [taskProp, setTaskProp] = useState({});
+
+
     function clearSearchInput() {
         setFilter([]);
         setTaskClear("");
@@ -28,6 +32,8 @@ const Home = () => {
         setTaskClear(e.target.value);
         debounceTimer = setTimeout(() => { handleSearchInput(e) }, 1500);
     }
+
+
     return (
         <section className="header">
             <h1>Kanban Board</h1>
@@ -42,10 +48,10 @@ const Home = () => {
                             <p className="task-result">Results found {filter.length}</p>
                             <hr />
                             {filter.map((item) =>
-                                <div className="search-result">
+                                <Link to={`/tasks/${item.id}`} className="search-input-link"><div className="search-result">
                                     <p>{item.title}</p>
                                     <hr />
-                                </div>)
+                                </div></Link>)
                             }
                         </div>
                         : taskClear.length < 3 ?

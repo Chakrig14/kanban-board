@@ -111,6 +111,7 @@ const TaskBox = () => {
         saveDataToLocalStorage(storedTasks);
     }, []);
 
+
     let taskItems = taskData || [];
 
     function openTaskDetails(task) {
@@ -229,7 +230,7 @@ const TaskBox = () => {
                             <Cancel className="icon" onClick={handleCloseOpenedTask} />
                         </div>
                         <div>
-                            <p className="modal-task-title" contentEditable="true" onBlur={(e) => handleTaskTitleChange(e)}>{selectedTask.title}</p>
+                            <p className="modal-task-title" contentEditable={true} onBlur={(e) => handleTaskTitleChange(e)}>{selectedTask.title}</p>
                         </div>
                         <div>
                             <select status="status" id="status" onChange={(e) => { handleStateChange(e) }}>
@@ -240,7 +241,7 @@ const TaskBox = () => {
                         </div>
                         <div className="description-box">
                             <label for="description" className="modal-state">Description </label>
-                            <p className="modal-task-desc" contentEditable="true" onBlur={(e) => handleTaskDescriptionChange(e)}>{selectedTask.description}</p>
+                            <p className="modal-task-desc" contentEditable={true} onBlur={(e) => handleTaskDescriptionChange(e)}>{selectedTask.description}</p>
                         </div>
                         <div className="task-date-btn">
                             <div className="task-date">
@@ -257,4 +258,4 @@ const TaskBox = () => {
     );
 }
 
-export default TaskBox;
+export default TaskBox; 
