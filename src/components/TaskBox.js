@@ -9,6 +9,7 @@ const TaskBox = () => {
     const [modalTask, setTaskModalState] = useState(false);
     const [selectedTask, setSelectedTask] = useState({});
     const [editedTask, setEditedTask] = useState({ title: "", description: "" });
+    const [dragTask, setDragTask] = useState({});
 
     const date = new Date();
 
@@ -155,19 +156,47 @@ const TaskBox = () => {
         handleCloseOpenedTask();
     }
 
+    function handleDragStart(e, task) {
+        console.log(e.target);
+        setDragTask(task);
+    }
+
+    const handleDrop = (e) => {
+        e.preventDefault();
+        console.log(e);
+        console.log(e.target.className);
+        if (e.target.id !== dragTask.category && e.target.className === "task-board") {
+            let draggedTask = taskData.map((item) => {
+                if (item.id === dragTask.id) {
+                    return { ...item, category: e.target.id };
+                }
+                return item;
+            })
+            setTaskData(draggedTask);
+            saveDataToLocalStorage(draggedTask);
+            setDragTask({});
+        }
+    }
+
+    const handleDragOver = (e) => {
+        e.preventDefault();
+        console.log(e.target);
+    }
+
     let todoTasks = taskItems.filter((item) => item.category === "todo");
-    let inprogressTasks = taskItems.filter((item) => item.category === "inprogress");
+    let inprogressTasks = taskItems.filter((item) => item.category === "inProgress");
     let doneTasks = taskItems.filter((item) => item.category === "done");
     return (
         <>
             <section className="task">
-                <div className="task-board" id="todo">
+                <div className="task-board" id="todo" onDrop={(e) => handleDrop(e)} onDragOver={(e) => handleDragOver(e)}>
                     <div className="todo-task">
                         <h2>TO DO📜</h2>
                         <AddCircle className="icon" onClick={handleTaskModal} />
                     </div>
-                    {todoTasks.map((item) =>
-                    (<div className="task-item" onClick={() => openTaskDetails(item)}>
+                    {todoTasks.map((item, index) =>
+                    (<div key={index} draggable={true} className="task-item" onClick={() => openTaskDetails(item)}
+                        onDragStart={(e) => handleDragStart(e, item)} >
                         {item.category === "todo" ?
                             <div className="title-icon">
                                 <p>{item.title}</p>
@@ -176,11 +205,12 @@ const TaskBox = () => {
                             : ""}
                     </div>))}
                 </div>
-                <div className="task-board" id="inProgress">
+                <div className="task-board" id="inProgress" onDrop={(e) => handleDrop(e)} onDragOver={(e) => handleDragOver(e)}>
                     <h2>IN PROGRESS⏳</h2>
-                    {inprogressTasks.map((item) =>
-                    (<div className="task-item" onClick={() => openTaskDetails(item)}>
-                        {item.category === "inprogress" ?
+                    {inprogressTasks.map((item, index) =>
+                    (<div key={index} draggable={true} className="task-item" onClick={() => openTaskDetails(item)}
+                        onDragStart={(e) => handleDragStart(e, item)} >
+                        {item.category === "inProgress" ?
                             <div className="title-icon">
                                 <p>{item.title}</p>
                                 <MoreHorizOutlined />
@@ -188,10 +218,11 @@ const TaskBox = () => {
                             : ""}
                     </div>))}
                 </div>
-                <div className="task-board" id="done">
+                <div className="task-board" id="done" onDrop={(e) => handleDrop(e)} onDragOver={(e) => handleDragOver(e)}>
                     <h2>DONE✅</h2>
-                    {doneTasks.map((item) =>
-                    (<div className="task-item task-done" onClick={() => openTaskDetails(item)}>
+                    {doneTasks.map((item, index) =>
+                    (<div key={index} draggable={true} className="task-item task-done" onClick={() => openTaskDetails(item)}
+                        onDragStart={(e) => handleDragStart(e, item)} >
                         {item.category === "done" ? <div className="title-icon">
                             <p>{item.title}</p>
                             <MoreHorizOutlined />
@@ -235,7 +266,7 @@ const TaskBox = () => {
                         <div>
                             <select status="status" id="status" onChange={(e) => { handleStateChange(e) }}>
                                 <option value="todo">Todo</option>
-                                <option value="inprogress">In Progress</option>
+                                <option value="inProgress">In Progress</option>
                                 <option value="done">Done</option>
                             </select>
                         </div>
