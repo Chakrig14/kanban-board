@@ -27,10 +27,13 @@ const TaskModal = () => {
 
     function handleStateChange(e) {
         console.log(e.target.value);
-        let updateTaskIndex = tasks.findIndex((item) => item.id === id);
-        tasks[updateTaskIndex].category = e.target.value;
-        console.log(tasks[updateTaskIndex]);
-        saveDataToLocalStorage(tasks)
+        let updateTask = tasks.map((item) => {
+            if (item.id === id) {
+                return { ...item, category: e.target.value }
+            }
+            return item;
+        })
+        saveDataToLocalStorage(updateTask)
     }
 
     function handleCloseOpenAreaClick(e) {
