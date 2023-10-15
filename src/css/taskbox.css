@@ -145,7 +145,7 @@ form>textarea {
     color: #fff;
     font-family: Poppins;
     font-size: 0.8rem;
-    cursor: pointer;
+    cursor: move;
 }
 
 label {
