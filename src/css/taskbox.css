@@ -325,3 +325,7 @@ select>option {
     cursor: pointer;
     padding: 0.2rem 0.8rem;
 }
+
+.title-icon>p {
+    cursor: pointer;
+}
