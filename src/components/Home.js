@@ -20,7 +20,7 @@ const Home = () => {
         let filteredTask
         console.log(userInput);
         if (event.target.value.length > 2) {
-            filteredTask = taskFromLocalStorage.filter((item) => item.title.toLowerCase().includes(userInput));
+            filteredTask = taskFromLocalStorage.filter((item) => item.title.toLowerCase().includes(userInput.toLowerCase()));
             setFilter(filteredTask);
         }
         // let filteredTask = taskFromLocalStorage.filter((item) => item.title.toLowerCase().includes(userInput));
