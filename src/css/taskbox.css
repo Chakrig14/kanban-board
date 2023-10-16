@@ -146,6 +146,7 @@ form>textarea {
     font-family: Poppins;
     font-size: 0.8rem;
     cursor: move;
+    z-index: -1;
 }
 
 label {
@@ -286,4 +287,41 @@ select>option {
 .task-date {
     display: flex;
     flex-direction: column;
+}
+
+.dot-icon {
+    cursor: pointer;
+}
+
+.edit-btn {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.task-btn-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.4rem;
+}
+
+.edit {
+    background-color: #0073ba;
+    color: #fff;
+    font-family: "Gabarito";
+    font-size: 0.9rem;
+    border: none;
+    cursor: pointer;
+    padding: 0.2rem 1rem;
+    margin-right: 10px;
+}
+
+.remove {
+    background-color: rgb(248, 144, 65);
+    font-size: 0.9rem;
+    color: #fff;
+    font-family: "Gabarito";
+    border: none;
+    cursor: pointer;
+    padding: 0.2rem 0.8rem;
 }

@@ -10,6 +10,8 @@ const TaskBox = () => {
     const [selectedTask, setSelectedTask] = useState({});
     const [editedTask, setEditedTask] = useState({ title: "", description: "" });
     const [dragTask, setDragTask] = useState({});
+    const [editHandle, setEditHandle] = useState(false);
+    const [dotId, setDotId] = useState("");
 
     const date = new Date();
 
@@ -157,14 +159,11 @@ const TaskBox = () => {
     }
 
     function handleDragStart(e, task) {
-        console.log(e.target);
         setDragTask(task);
     }
 
     const handleDrop = (e) => {
         e.preventDefault();
-        console.log(e);
-        console.log(e.target.className);
         if (e.target.id !== dragTask.category && e.target.className === "task-board") {
             let draggedTask = taskData.map((item) => {
                 if (item.id === dragTask.id) {
@@ -180,7 +179,22 @@ const TaskBox = () => {
 
     const handleDragOver = (e) => {
         e.preventDefault();
-        console.log(e.target);
+    }
+
+    function handleDotClick(task) {
+        if (editHandle === true && dotId !== task.id) {
+            setDotId(task.id)
+        }
+        else {
+            setEditHandle(!editHandle);
+        }
+        setDotId(task.id);
+    }
+
+    function deleteTask(task) {
+        let deletedTask = taskData.filter((item) => item.id !== task.id);
+        setTaskData(deletedTask);
+        saveDataToLocalStorage(deletedTask);
     }
 
     let todoTasks = taskItems.filter((item) => item.category === "todo");
@@ -195,12 +209,21 @@ const TaskBox = () => {
                         <AddCircle className="icon" onClick={handleTaskModal} />
                     </div>
                     {todoTasks.map((item, index) =>
-                    (<div key={index} draggable={true} className="task-item" onClick={() => openTaskDetails(item)}
+                    (<div key={index} draggable={true} className="task-item"
                         onDragStart={(e) => handleDragStart(e, item)} >
                         {item.category === "todo" ?
-                            <div className="title-icon">
-                                <p>{item.title}</p>
-                                <MoreHorizOutlined />
+                            <div>
+                                <div className="title-icon">
+                                    <p onClick={() => openTaskDetails(item)}>{item.title}</p>
+                                    <MoreHorizOutlined className="dot-icon" onClick={() => handleDotClick(item)} />
+                                </div>
+                                {dotId === item.id && editHandle && <div className="task-btn-section">
+                                    <p>{item.id}</p>
+                                    <div className="edit-btn">
+                                        <button className="edit" onClick={() => openTaskDetails(item)}>✏️Edit</button>
+                                        <button className="remove" onClick={() => deleteTask(item)}>❌Delete</button>
+                                    </div>
+                                </div>}
                             </div>
                             : ""}
                     </div>))}
@@ -208,12 +231,21 @@ const TaskBox = () => {
                 <div className="task-board" id="inProgress" onDrop={(e) => handleDrop(e)} onDragOver={(e) => handleDragOver(e)}>
                     <h2>IN PROGRESS⏳</h2>
                     {inprogressTasks.map((item, index) =>
-                    (<div key={index} draggable={true} className="task-item" onClick={() => openTaskDetails(item)}
+                    (<div key={index} draggable={true} className="task-item"
                         onDragStart={(e) => handleDragStart(e, item)} >
                         {item.category === "inProgress" ?
-                            <div className="title-icon">
-                                <p>{item.title}</p>
-                                <MoreHorizOutlined />
+                            <div>
+                                <div className="title-icon">
+                                    <p onClick={() => openTaskDetails(item)}>{item.title}</p>
+                                    <MoreHorizOutlined className="dot-icon" onClick={() => handleDotClick(item)} />
+                                </div>
+                                {dotId === item.id && editHandle && <div className="task-btn-section">
+                                    <p>{item.id}</p>
+                                    <div className="edit-btn">
+                                        <button className="edit" onClick={() => openTaskDetails(item)}>✏️Edit</button>
+                                        <button className="remove" onClick={() => deleteTask(item)}>❌Delete</button>
+                                    </div>
+                                </div>}
                             </div>
                             : ""}
                     </div>))}
@@ -221,12 +253,23 @@ const TaskBox = () => {
                 <div className="task-board" id="done" onDrop={(e) => handleDrop(e)} onDragOver={(e) => handleDragOver(e)}>
                     <h2>DONE✅</h2>
                     {doneTasks.map((item, index) =>
-                    (<div key={index} draggable={true} className="task-item task-done" onClick={() => openTaskDetails(item)}
+                    (<div key={index} draggable={true} className="task-item task-done"
                         onDragStart={(e) => handleDragStart(e, item)} >
-                        {item.category === "done" ? <div className="title-icon">
-                            <p>{item.title}</p>
-                            <MoreHorizOutlined />
-                        </div> : ""}
+                        {item.category === "done" ?
+                            <div>
+                                <div className="title-icon">
+                                    <p onClick={() => openTaskDetails(item)}>{item.title}</p>
+                                    <MoreHorizOutlined className="dot-icon" onClick={() => handleDotClick(item)} />
+                                </div>
+                                {dotId === item.id && editHandle && <div className="task-btn-section">
+                                    <p>{item.id}</p>
+                                    <div className="edit-btn">
+                                        <button className="edit" onClick={() => openTaskDetails(item)}>✏️Edit</button>
+                                        <button className="remove" onClick={() => deleteTask(item)}>❌Delete</button>
+                                    </div>
+                                </div>}
+                            </div>
+                            : ""}
                     </div>))}
                 </div>
             </section>

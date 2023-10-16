@@ -20,7 +20,6 @@ const TaskModal = () => {
     }
     let tasks = getTaskFromLocalStorage();
     let selectedTask = tasks.filter((item) => item.id === id);
-    console.log(selectedTask[0]);
     function handleCloseOpenedTask() {
         navigate("/");
     }
