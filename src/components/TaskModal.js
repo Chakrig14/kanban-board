@@ -20,6 +20,7 @@ const TaskModal = () => {
     }
     let tasks = getTaskFromLocalStorage();
     let selectedTask = tasks.filter((item) => item.id === id);
+    console.log(selectedTask[0].category);
     function handleCloseOpenedTask() {
         navigate("/");
     }
@@ -77,14 +78,14 @@ const TaskModal = () => {
                     <p className="modal-task-title" contentEditable={true} onBlur={(e) => handleTaskTitleChange(e)}>{selectedTask[0].title}</p>
                 </div>
                 <div>
-                    <select status="status" id="status" onChange={(e) => { handleStateChange(e) }}>
+                    <select value={selectedTask[0].category} status="status" id="status" onChange={(e) => { handleStateChange(e) }}>
                         <option value="todo">Todo</option>
-                        <option value="inprogress">In Progress</option>
+                        <option value="inProgress">In Progress</option>
                         <option value="done">Done</option>
                     </select>
                 </div>
                 <div className="description-box">
-                    <label for="description" className="modal-state">Description </label>
+                    <label htmlFor="description" className="modal-state">Description </label>
                     <p className="modal-task-desc" contentEditable={true} onBlur={(e) => handleTaskDescriptionChange(e)}>{selectedTask[0].description}</p>
                 </div>
                 <div className="task-date-btn">

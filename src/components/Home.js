@@ -17,8 +17,7 @@ const Home = () => {
     }
     function handleSearchInput(event) {
         let userInput = event.target.value;
-        let filteredTask
-        console.log(userInput);
+        let filteredTask;
         if (event.target.value.length > 2) {
             filteredTask = taskFromLocalStorage.filter((item) => item.title.toLowerCase().includes(userInput.toLowerCase()));
             setFilter(filteredTask);
@@ -29,8 +28,17 @@ const Home = () => {
     let debounceTimer;
     const debounceSearch = (e) => {
         clearTimeout(debounceTimer);
-        setTaskClear(e.target.value);
-        debounceTimer = setTimeout(() => { handleSearchInput(e) }, 1500);
+        let regexExp = /^[a-zA-Z0-9 ]+$/;
+        let inputValue = e.target.value;
+        let matchExp = regexExp.test(inputValue);
+        console.log(matchExp);
+        if (matchExp) {
+            setTaskClear(e.target.value);
+            debounceTimer = setTimeout(() => { handleSearchInput(e) }, 1500);
+        }
+        else if (inputValue.length < 1) {
+            setTaskClear("");
+        }
     }
 
 
@@ -48,7 +56,7 @@ const Home = () => {
                             <p className="task-result">Results found {filter.length}</p>
                             <hr />
                             {filter.map((item) =>
-                                <Link to={`/tasks/${item.id}`} className="search-input-link"><div className="search-result">
+                                <Link key={item.id} to={`/tasks/${item.id}`} className="search-input-link"><div className="search-result">
                                     <p>{item.title}</p>
                                     <hr />
                                 </div></Link>)

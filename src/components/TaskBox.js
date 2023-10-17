@@ -307,7 +307,7 @@ const TaskBox = () => {
                             <p className="modal-task-title" contentEditable={true} onBlur={(e) => handleTaskTitleChange(e)}>{selectedTask.title}</p>
                         </div>
                         <div>
-                            <select status="status" id="status" onChange={(e) => { handleStateChange(e) }}>
+                            <select value={selectedTask.category} status="status" id="status" onChange={(e) => { handleStateChange(e) }}>
                                 <option value="todo">Todo</option>
                                 <option value="inProgress">In Progress</option>
                                 <option value="done">Done</option>
